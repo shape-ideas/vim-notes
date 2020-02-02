@@ -165,7 +165,7 @@ function! xolox#notes#tags#show_tags(minsize) " {{{1
       endif
     endfor
     if a:minsize <= 1
-      let message = printf("You've used %i %s in %i %s",
+      let message = printf(" > You've used %i %s in %i %s",
             \ numtags, numtags == 1 ? "tag" : "tags",
             \ totalnotes, totalnotes == 1 ? "note" : "notes")
     else
@@ -174,18 +174,18 @@ function! xolox#notes#tags#show_tags(minsize) " {{{1
             \ numtags == 1 ? "tag" : "tags",
             \ numtags == 1 ? "has" : "have", a:minsize)
     endif
-    let message .= ", " . (numtags == 1 ? "it's" : "they're")
-    let message .= " listed below. Tags and notes are sorted alphabetically and after each note is the date when it was last modified."
-    if !empty(unmatched)
-      if a:minsize <= 1
-        let message .= " At the bottom is a list of untagged notes."
-      else
-        let message .= " At the bottom is a list of unmatched notes."
-      endif
-    endif
-    if numtags > 1 && !(&foldmethod == 'expr' && &foldenable)
-      let message .= " You can enable text folding to get an overview of just the tag names and how many times they've been used."
-    endif
+    " let message .= ", " . (numtags == 1 ? "it's" : "they're")
+    " let message .= " listed below. Tags and notes are sorted alphabetically and after each note is the date when it was last modified."
+    " if !empty(unmatched)
+    "   if a:minsize <= 1
+    "     let message .= " At the bottom is a list of untagged notes."
+    "   else
+    "     let message .= " At the bottom is a list of unmatched notes."
+    "   endif
+    " endif
+    " if numtags > 1 && !(&foldmethod == 'expr' && &foldenable)
+    "   let message .= " You can enable text folding to get an overview of just the tag names and how many times they've been used."
+    " endif
     call insert(lines, message, 2)
   endif
   call xolox#misc#buffer#prepare(s:buffer_name)
